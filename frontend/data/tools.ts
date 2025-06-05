@@ -1,24 +1,108 @@
-export interface Tool {
-  slug: string;
-  name: string;
-  description: string;
-  url: string;
-  color: string;
-}
-
-export const tools: Tool[] = [
+export const categories = [
   {
-    slug: 'notion',
-    name: 'Notion',
-    description: 'Gestion de projet tout-en-un pour entrepreneurs.',
-    url: 'https://www.notion.so',
-    color: '#f4d9b5',
+    id: '1',
+    name: 'Gestion de projet',
+    slug: 'gestion-projet',
+    color: '#3B82F6',
   },
   {
+    id: '2',
+    name: 'Communication',
+    slug: 'communication',
+    color: '#10B981',
+  },
+  {
+    id: '3',
+    name: 'Marketing',
+    slug: 'marketing',
+    color: '#F59E0B',
+  },
+  {
+    id: '4',
+    name: 'Finances',
+    slug: 'finances',
+    color: '#EF4444',
+  },
+  {
+    id: '5',
+    name: 'Design',
+    slug: 'design',
+    color: '#8B5CF6',
+  },
+];
+
+export const tools = [
+  {
+    id: '1',
+    slug: 'notion',
+    name: 'Notion',
+    description: 'Workspace tout-en-un qui combine notes, tâches, wikis et bases de données pour une productivité maximale.',
+    url: 'https://www.notion.so',
+    color: '#000000',
+    category: categories[0],
+    featured: true,
+    rating: 4.8,
+    reviewCount: 2847,
+    tags: ['Productivité', 'Collaboration', 'Base de données', 'Notes'],
+  },
+  {
+    id: '2',
     slug: 'slack',
     name: 'Slack',
-    description: 'Communication d\'équipe efficace.',
+    description: 'Plateforme de communication qui connecte votre équipe avec les outils, services et ressources dont elle a besoin.',
     url: 'https://slack.com',
-    color: '#b5d9f4',
+    color: '#4A154B',
+    category: categories[1],
+    rating: 4.6,
+    reviewCount: 1923,
+    tags: ['Communication', 'Équipe', 'Intégrations', 'Canaux'],
+  },
+  {
+    id: '3',
+    slug: 'figma',
+    name: 'Figma',
+    description: 'Outil de design collaboratif basé sur le web pour créer des interfaces utilisateur et prototypes.',
+    url: 'https://figma.com',
+    color: '#F24E1E',
+    category: categories[4],
+    rating: 4.7,
+    reviewCount: 3156,
+    tags: ['Design', 'Prototypage', 'Collaboration', 'UI/UX'],
+  },
+  {
+    id: '4',
+    slug: 'stripe',
+    name: 'Stripe',
+    description: 'Infrastructure de paiement pour internet. Acceptez des paiements et gérez votre entreprise en ligne.',
+    url: 'https://stripe.com',
+    color: '#635BFF',
+    category: categories[3],
+    rating: 4.9,
+    reviewCount: 892,
+    tags: ['Paiements', 'API', 'E-commerce', 'Facturation'],
+  },
+  {
+    id: '5',
+    slug: 'mailchimp',
+    name: 'Mailchimp',
+    description: 'Plateforme de marketing automation et email marketing pour développer votre audience.',
+    url: 'https://mailchimp.com',
+    color: '#FFE01B',
+    category: categories[2],
+    rating: 4.4,
+    reviewCount: 1567,
+    tags: ['Email marketing', 'Automation', 'Analytics', 'CRM'],
+  },
+  {
+    id: '6',
+    slug: 'trello',
+    name: 'Trello',
+    description: 'Outil de gestion de projet visuel basé sur la méthode Kanban pour organiser vos tâches.',
+    url: 'https://trello.com',
+    color: '#0079BF',
+    category: categories[0],
+    rating: 4.5,
+    reviewCount: 2341,
+    tags: ['Kanban', 'Gestion de tâches', 'Collaboration', 'Visual'],
   },
 ];
