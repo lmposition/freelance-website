@@ -1,0 +1,56 @@
+<header class="site-header">
+    <nav class="navbar">
+        <div class="nav-container">
+            {{!-- Logo et navigation gauche --}}
+            <div class="nav-left">
+                <a href="{{@site.url}}" class="logo">
+                    <img src="{{asset "images/logo.svg"}}" alt="{{@site.title}}" class="logo-img">
+                </a>
+                <div class="nav-links">
+                    <a href="/etudes-de-cas" class="nav-link">Études de cas</a>
+                    <a href="/guides" class="nav-link">Nos guides</a>
+                </div>
+            </div>
+            
+            {{!-- Navigation centrale --}}
+            <div class="nav-center">
+                <div class="nav-switcher" data-switcher>
+                    <button class="switcher-btn active" data-target="tools">
+                        Explorer les outils
+                    </button>
+                    <button class="switcher-btn" data-target="simulators">
+                        Nos simulateurs
+                    </button>
+                    <div class="switcher-indicator"></div>
+                </div>
+            </div>
+            
+            {{!-- Navigation droite --}}
+            <div class="nav-right">
+                <a href="{{@custom.partner_button_url}}" class="btn btn-primary">
+                    {{@custom.partner_button_text}}
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    {{!-- Barre de recherche --}}
+    {{#if @custom.show_search}}
+    <div class="search-bar">
+        <div class="search-container">
+            <input type="text" 
+                   class="search-input" 
+                   placeholder="Exemple: Trouve-moi un outil de productivité pour moins de 10€/mois pour Mac..."
+                   data-search-input>
+            <button class="search-btn" data-search-btn>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </button>
+        </div>
+        <p class="search-credit">
+            Propulsé par <strong>Strapi</strong> — utilisé par 3.4M d'entreprises dans le monde
+        </p>
+    </div>
+    {{/if}}
+</header>

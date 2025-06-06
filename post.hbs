@@ -1,0 +1,440 @@
+{{!< default}}
+
+<article class="tool-page {{post_class}}">
+    {{!-- En-tête de l'outil --}}
+    <header class="tool-header">
+        <div class="tool-header-container">
+            <div class="tool-main-info">
+                {{#if feature_image}}
+                <div class="tool-large-icon">
+                    <img src="{{img_url feature_image size="m"}}" alt="{{title}}" class="tool-large-icon-img">
+                </div>
+                {{/if}}
+                <div class="tool-details">
+                    <div class="tool-breadcrumb">
+                        <a href="{{@site.url}}">Accueil</a>
+                        <span>/</span>
+                        {{#if primary_tag}}
+                        <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+                        <span>/</span>
+                        {{/if}}
+                        <span>{{title}}</span>
+                    </div>
+                    
+                    <h1 class="tool-title">{{title}}</h1>
+                    {{#if excerpt}}
+                    <p class="tool-subtitle">{{excerpt}}</p>
+                    {{/if}}
+                    
+                    {{!-- Métadonnées de l'outil --}}
+                    <div class="tool-metadata">
+                        {{#if primary_tag}}
+                        <div class="metadata-item">
+                            <span class="metadata-label">Catégorie:</span>
+                            <a href="{{primary_tag.url}}" class="category-link">{{primary_tag.name}}</a>
+                        </div>
+                        {{/if}}
+                        
+                        <div class="metadata-item">
+                            <span class="metadata-label">Dernière mise à jour:</span>
+                            <time datetime="{{date updated_at format="YYYY-MM-DD"}}">{{date updated_at format="DD MMMM YYYY"}}</time>
+                        </div>
+                        
+                        {{#has tag="gratuit,freemium,payant"}}
+                        <div class="metadata-item">
+                            <span class="metadata-label">Tarif:</span>
+                            {{#has tag="gratuit"}}<span class="pricing-badge free">Gratuit</span>{{/has}}
+                            {{#has tag="freemium"}}<span class="pricing-badge freemium">Freemium</span>{{/has}}
+                            {{#has tag="payant"}}<span class="pricing-badge paid">Payant</span>{{/has}}
+                        </div>
+                        {{/has}}
+                    </div>
+                    
+                    <div class="tool-meta">
+                        <div class="tool-tabs">
+                            <button class="tab-btn active" data-tab="overview">Aperçu</button>
+                            <button class="tab-btn" data-tab="features">Fonctionnalités</button>
+                            <button class="tab-btn" data-tab="pricing">Tarifs</button>
+                            <button class="tab-btn" data-tab="alternatives">Alternatives</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tool-sidebar">
+                {{#has tag="essai-gratuit"}}
+                <div class="trial-badge">
+                    <span class="trial-text">✨ Essai gratuit disponible</span>
+                </div>
+                {{/has}}
+                
+                <div class="tool-platforms">
+                    <h4>Plateformes {{title}}</h4>
+                    <div class="platform-icons">
+                        {{#has tag="mac"}}
+                        <div class="platform-icon mac">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09z" fill="currentColor"/>
+                                <path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701z" fill="currentColor"/>
+                            </svg>
+                            <span>Mac</span>
+                        </div>
+                        {{/has}}
+                        {{#has tag="windows"}}
+                        <div class="platform-icon windows">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 5.45L9.17 4.5v6.13H3v-5.18zm6.17 6.13v6.13L3 16.55v-5.18h6.17zm1.79 0H21v5.18L10.96 18v-6.42zm0-6.13V11H21V5.45L10.96 3.8z" fill="currentColor"/>
+                            </svg>
+                            <span>Windows</span>
+                        </div>
+                        {{/has}}
+                        {{#has tag="web"}}
+                        <div class="platform-icon web">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span>Web</span>
+                            </div>
+                       {{/has}}
+                       {{#has tag="ios"}}
+                       <div class="platform-icon ios">
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <rect x="5" y="3" width="14" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                               <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"/>
+                           </svg>
+                           <span>iOS</span>
+                       </div>
+                       {{/has}}
+                       {{#has tag="android"}}
+                       <div class="platform-icon android">
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5z" fill="currentColor"/>
+                               <path d="M15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z" fill="currentColor"/>
+                           </svg>
+                           <span>Android</span>
+                       </div>
+                       {{/has}}
+                   </div>
+               </div>
+               
+               <div class="tool-integrations">
+                   <h4>Intégrations {{title}}</h4>
+                   <div class="integration-icons">
+                       {{#has tag="slack"}}
+                       <div class="integration-icon slack">
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z" fill="#E01E5A"/>
+                               <path d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" fill="#36C5F0"/>
+                           </svg>
+                           <span>Slack</span>
+                       </div>
+                       {{/has}}
+                       {{#has tag="notion"}}
+                       <div class="integration-icon notion">
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933l3.269-.186z" fill="currentColor"/>
+                           </svg>
+                           <span>Notion</span>
+                       </div>
+                       {{/has}}
+                       {{#has tag="google"}}
+                       <div class="integration-icon google">
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                           </svg>
+                           <span>Google</span>
+                       </div>
+                       {{/has}}
+                       {{#has tag="zapier"}}
+                       <div class="integration-icon zapier">
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" fill="#FF4A00"/>
+                               <path d="M12.812 14.024L16.505 18h-2.084l-2.421-2.563L9.579 18H7.495l3.693-3.976L7.454 10h2.085l2.421 2.563L14.381 10h2.084l-3.653 4.024z" fill="#FFF"/>
+                           </svg>
+                           <span>Zapier</span>
+                       </div>
+                       {{/has}}
+                   </div>
+               </div>
+               
+               <a href="#" class="btn btn-primary btn-large cta-button" data-external-link>
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                       <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H12" stroke="currentColor" stroke-width="2"/>
+                       <path d="M15 3H21V9" stroke="currentColor" stroke-width="2"/>
+                       <path d="M10 14L21 3" stroke="currentColor" stroke-width="2"/>
+                   </svg>
+                   Obtenir {{title}}
+               </a>
+               
+               {{#if primary_tag}}
+               <a href="{{primary_tag.url}}" class="btn btn-outline btn-large compare-button">
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                       <path d="M9 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2zM19 3h-4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2"/>
+                   </svg>
+                   Meilleurs outils {{primary_tag.name}}
+               </a>
+               {{/if}}
+               
+               <div class="vendor-note">
+                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                       <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                       <path d="M12 16V12" stroke="currentColor" stroke-width="2"/>
+                       <path d="M12 8H12.01" stroke="currentColor" stroke-width="2"/>
+                   </svg>
+                   Cette page reste gratuite car {{title}} a sécurisé son statut de fournisseur vérifié.
+               </div>
+           </div>
+       </div>
+   </header>
+   
+   {{!-- Contenu principal --}}
+   <main class="tool-content">
+       <div class="tool-content-container">
+           {{!-- Vidéo/Aperçu --}}
+           {{#if feature_image}}
+           <section class="tool-preview">
+               <div class="video-container">
+                   <img src="{{img_url feature_image size="xl"}}" alt="Aperçu de {{title}}" class="preview-image">
+                   <button class="play-button" data-video-play>
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                           <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                       </svg>
+                   </button>
+               </div>
+           </section>
+           {{/if}}
+           
+           {{!-- Sections d'information avec onglets --}}
+           <div class="tool-info-sections">
+               <section class="info-section" data-tab-content="overview">
+                   <h2>Qu'est-ce que {{title}} ?</h2>
+                   <div class="content-text">
+                       {{content}}
+                   </div>
+                   
+                   {{#if tags}}
+                   <div class="tool-features-highlight">
+                       <h3>Points forts de {{title}}</h3>
+                       <div class="features-grid">
+                           {{#has tag="ia"}}
+                           <div class="feature-item">
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                   <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                               </svg>
+                               <span>Intelligence Artificielle</span>
+                           </div>
+                           {{/has}}
+                           {{#has tag="collaboration"}}
+                           <div class="feature-item">
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                   <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2"/>
+                                   <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                   <path d="M23 21V19C23 17.9391 22.5786 16.9217 21.8284 16.1716C21.0783 15.4214 20.0609 15 19 15H17" stroke="currentColor" stroke-width="2"/>
+                                   <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2"/>
+                               </svg>
+                               <span>Collaboration en équipe</span>
+                           </div>
+                           {{/has}}
+                           {{#has tag="automatisation"}}
+                           <div class="feature-item">
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                   <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                                   <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+                                   <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                               </svg>
+                               <span>Automatisation avancée</span>
+                           </div>
+                           {{/has}}
+                           {{#has tag="mobile"}}
+                           <div class="feature-item">
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                   <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                                   <line x1="12" y1="18" x2="12.01" y2="18" stroke="currentColor" stroke-width="2"/>
+                               </svg>
+                               <span>Application mobile</span>
+                           </div>
+                           {{/has}}
+                       </div>
+                   </div>
+                   {{/if}}
+               </section>
+               
+               <section class="info-section hidden" data-tab-content="features">
+                   <h2>Fonctionnalités de {{title}}</h2>
+                   <div class="features-detailed">
+                       <div class="feature-category">
+                           <h3>Fonctionnalités principales</h3>
+                           <ul class="features-list">
+                               <li>Interface utilisateur intuitive et moderne</li>
+                               <li>Synchronisation en temps réel</li>
+                               <li>Notifications personnalisables</li>
+                               <li>Intégrations multiples</li>
+                           </ul>
+                       </div>
+                       
+                       {{#has tag="collaboration"}}
+                       <div class="feature-category">
+                           <h3>Collaboration</h3>
+                           <ul class="features-list">
+                               <li>Partage en temps réel</li>
+                               <li>Commentaires et annotations</li>
+                               <li>Gestion des permissions</li>
+                               <li>Historique des modifications</li>
+                           </ul>
+                       </div>
+                       {{/has}}
+                       
+                       {{#has tag="securite"}}
+                       <div class="feature-category">
+                           <h3>Sécurité</h3>
+                           <ul class="features-list">
+                               <li>Chiffrement de bout en bout</li>
+                               <li>Authentification à deux facteurs</li>
+                               <li>Conformité RGPD</li>
+                               <li>Sauvegardes automatiques</li>
+                           </ul>
+                       </div>
+                       {{/has}}
+                   </div>
+               </section>
+               
+               <section class="info-section hidden" data-tab-content="pricing">
+                   <h2>Tarifs de {{title}}</h2>
+                   <div class="pricing-grid">
+                       {{#has tag="gratuit"}}
+                       <div class="pricing-card">
+                           <div class="pricing-header">
+                               <h3>Gratuit</h3>
+                               <div class="price">
+                                   <span class="currency">€</span>
+                                   <span class="amount">0</span>
+                                   <span class="period">/mois</span>
+                               </div>
+                           </div>
+                           <div class="pricing-features">
+                               <ul>
+                                   <li>Fonctionnalités de base</li>
+                                   <li>Support communautaire</li>
+                                   <li>Stockage limité</li>
+                               </ul>
+                           </div>
+                       </div>
+                       {{/has}}
+                       
+                       {{#has tag="freemium"}}
+                       <div class="pricing-card popular">
+                           <div class="pricing-badge">Populaire</div>
+                           <div class="pricing-header">
+                               <h3>Pro</h3>
+                               <div class="price">
+                                   <span class="currency">€</span>
+                                   <span class="amount">9</span>
+                                   <span class="period">/mois</span>
+                               </div>
+                           </div>
+                           <div class="pricing-features">
+                               <ul>
+                                   <li>Toutes les fonctionnalités</li>
+                                   <li>Support prioritaire</li>
+                                   <li>Stockage illimité</li>
+                                   <li>Intégrations avancées</li>
+                               </ul>
+                           </div>
+                       </div>
+                       {{/has}}
+                       
+                       {{#has tag="entreprise"}}
+                       <div class="pricing-card">
+                           <div class="pricing-header">
+                               <h3>Entreprise</h3>
+                               <div class="price">
+                                   <span class="amount">Sur mesure</span>
+                               </div>
+                           </div>
+                           <div class="pricing-features">
+                               <ul>
+                                   <li>Déploiement personnalisé</li>
+                                   <li>Support dédié</li>
+                                   <li>Sécurité renforcée</li>
+                                   <li>Formation incluse</li>
+                               </ul>
+                           </div>
+                       </div>
+                       {{/has}}
+                   </div>
+               </section>
+               
+               <section class="info-section hidden" data-tab-content="alternatives">
+                   <h2>Alternatives à {{title}}</h2>
+                   <div class="alternatives-grid">
+                       {{#get "posts" filter="tag:{{primary_tag.slug}}+id:-{{id}}" limit="6"}}
+                           {{#foreach posts}}
+                           <article class="alternative-card">
+                               {{#if feature_image}}
+                               <div class="alternative-icon">
+                                   <img src="{{img_url feature_image size="s"}}" alt="{{title}}">
+                               </div>
+                               {{/if}}
+                               <div class="alternative-info">
+                                   <h4>{{title}}</h4>
+                                   <p>{{excerpt}}</p>
+                                   <a href="{{url}}" class="btn btn-outline btn-sm">Découvrir</a>
+                               </div>
+                           </article>
+                           {{/foreach}}
+                       {{/get}}
+                   </div>
+               </section>
+           </div>
+       </div>
+   </main>
+   
+   {{!-- Outils similaires --}}
+   <section class="related-tools">
+       <div class="related-container">
+           <h2>Outils Similaires</h2>
+           <div class="related-grid">
+               {{#get "posts" filter="tag:{{primary_tag.slug}}+id:-{{id}}" limit="3"}}
+                   {{#foreach posts}}
+                       {{> tool-card}}
+                   {{/foreach}}
+               {{/get}}
+           </div>
+       </div>
+   </section>
+</article>
+
+{{!-- JSON-LD Schema pour SEO --}}
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "{{title}}",
+ "description": "{{excerpt}}",
+ "url": "{{url absolute="true"}}",
+ "image": "{{img_url feature_image size="l" absolute="true"}}",
+ "applicationCategory": "{{primary_tag.name}}",
+ "operatingSystem": [
+   {{#has tag="mac"}}"macOS",{{/has}}
+   {{#has tag="windows"}}"Windows",{{/has}}
+   {{#has tag="web"}}"Web Browser",{{/has}}
+   {{#has tag="ios"}}"iOS",{{/has}}
+   {{#has tag="android"}}"Android"{{/has}}
+ ],
+ "offers": {
+   "@type": "Offer",
+   "price": "{{#has tag="gratuit"}}0{{else}}{{#has tag="freemium"}}9{{else}}Contact{{/has}}{{/has}}",
+   "priceCurrency": "EUR"
+ },
+ "publisher": {
+   "@type": "Organization",
+   "name": "{{@site.title}}",
+   "url": "{{@site.url}}"
+ }
+}
+</script>

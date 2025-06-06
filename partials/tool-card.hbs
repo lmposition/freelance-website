@@ -1,0 +1,59 @@
+<article class="tool-card" data-tool-id="{{id}}" data-tags="{{tags}}">
+    <div class="tool-card-header">
+        {{#if feature_image}}
+        <div class="tool-icon">
+            <img src="{{img_url feature_image size="s"}}" alt="{{title}}" class="tool-icon-img">
+        </div>
+        {{/if}}
+        <div class="tool-info">
+            <h3 class="tool-name">{{title}}</h3>
+            {{#if excerpt}}
+            <p class="tool-description">{{excerpt}}</p>
+            {{/if}}
+        </div>
+        {{#has tag="verifie"}}
+        <div class="tool-verified">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10B981" stroke-width="2"/>
+            </svg>
+        </div>
+        {{/has}}
+        {{#has tag="sponsorise"}}
+        <div class="tool-sponsored">Sponsorisé</div>
+        {{/has}}
+    </div>
+    
+    {{!-- Plateformes et catégories --}}
+    <div class="tool-meta">
+        <div class="tool-platforms">
+            {{#has tag="mac"}}<span class="platform-badge mac">Mac</span>{{/has}}
+            {{#has tag="windows"}}<span class="platform-badge windows">Windows</span>{{/has}}
+            {{#has tag="web"}}<span class="platform-badge web">Web</span>{{/has}}
+            {{#has tag="ios"}}<span class="platform-badge ios">iOS</span>{{/has}}
+            {{#has tag="android"}}<span class="platform-badge android">Android</span>{{/has}}
+        </div>
+        {{#if primary_tag}}
+        <div class="tool-category">
+            <span class="category-badge">{{primary_tag.name}}</span>
+        </div>
+        {{/if}}
+    </div>
+    
+    <div class="tool-card-actions">
+        <a href="{{url}}" class="btn btn-primary tool-visit">
+            Visiter {{title}}
+        </a>
+        <button class="btn btn-icon" data-bookmark="{{id}}" title="Ajouter aux favoris">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </button>
+        <button class="btn btn-icon" data-share="{{url}}" title="Partager">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M4 12V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V12" stroke="currentColor" stroke-width="2"/>
+                <polyline points="16,6 12,2 8,6" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="2" x2="12" y2="15" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </button>
+    </div>
+</article>

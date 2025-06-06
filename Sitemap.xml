@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {{#get "posts" limit="all" include="tags"}}
+        {{#foreach posts}}
+        <url>
+            <loc>{{url absolute="true"}}</loc>
+            <lastmod>{{date updated_at format="YYYY-MM-DD"}}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>{{#has tag="populaire"}}0.9{{else}}0.7{{/has}}</priority>
+        </url>
+        {{/foreach}}
+    {{/get}}
+    
+    {{#get "tags" limit="all"}}
+        {{#foreach tags}}
+        <url>
+            <loc>{{url absolute="true"}}</loc>
+            <lastmod>{{date updated_at format="YYYY-MM-DD"}}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+        {{/foreach}}
+    {{/get}}
+    
+    {{#get "pages" limit="all"}}
+        {{#foreach pages}}
+        <url>
+            <loc>{{url absolute="true"}}</loc>
+            <lastmod>{{date updated_at format="YYYY-MM-DD"}}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.6</priority>
+        </url>
+        {{/foreach}}
+    {{/get}}
+</urlset>

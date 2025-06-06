@@ -1,0 +1,31 @@
+routes:
+  /outils/: 
+    template: tools
+    filter: tag:outil
+  
+  /simulateurs/:
+    template: simulators  
+    filter: tag:simulateur
+    
+  /guides/:
+    template: guides
+    filter: tag:guide
+    
+  /etudes-de-cas/:
+    template: case-studies
+    filter: tag:etude-de-cas
+
+collections:
+  /category/{slug}/:
+    permalink: /category/{slug}/
+    template: tag
+    filter: tag:{slug}
+    
+  /tool/{slug}/:
+    permalink: /tool/{slug}/
+    template: post
+    filter: tag:outil+slug:{slug}
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

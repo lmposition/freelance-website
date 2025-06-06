@@ -1,0 +1,72 @@
+{{!< default}}
+
+<div class="error-page">
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-illustration">
+                <svg width="200" height="200" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M15 9L9 15" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9 9L15 15" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </div>
+            
+            <h1 class="error-title">
+                {{#is "404"}}
+                    Page introuvable
+                {{else}}
+                    Une erreur est survenue
+                {{/is}}
+            </h1>
+            
+            <p class="error-message">
+                {{#is "404"}}
+                    Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
+                {{else}}
+                    Nous rencontrons actuellement des difficultés techniques. Veuillez réessayer plus tard.
+                {{/is}}
+            </p>
+            
+            <div class="error-actions">
+                <a href="{{@site.url}}" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Retour à l'accueil
+                </a>
+                
+                <button class="btn btn-outline" onclick="history.back()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Page précédente
+                </button>
+            </div>
+            
+            {{#is "404"}}
+            <div class="search-suggestion">
+                <p>Vous pouvez aussi rechercher ce que vous cherchez :</p>
+                <form class="search-form" action="{{@site.url}}" method="get">
+                    <input type="search" name="q" placeholder="Rechercher un outil..." class="search-input">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </form>
+            </div>
+            {{/is}}
+        </div>
+        
+        {{#is "404"}}
+        <section class="popular-tools">
+            <h2>Outils populaires</h2>
+            <div class="tools-grid">
+                {{#get "posts" filter="tag:outil+tag:populaire" limit="6"}}
+                    {{#foreach posts}}
+                        {{> tool-card}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </section>
+        {{/is}}
+    </div>
+</div>

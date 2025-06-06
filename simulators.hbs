@@ -1,0 +1,28 @@
+{{!< default}}
+
+<div class="simulators-page">
+    <section class="page-header">
+        <div class="page-header-container">
+            <h1 class="page-title">Nos simulateurs</h1>
+            <p class="page-description">Calculateurs et simulateurs pour votre business</p>
+        </div>
+    </section>
+    
+    <section class="simulators-grid-section">
+        <div class="simulators-container">
+            {{#get "posts" filter="tag:simulator" limit="12"}}
+                {{#foreach posts}}
+                    <article class="simulator-card">
+                        <div class="simulator-header">
+                            <h3 class="simulator-name">{{title}}</h3>
+                            <p class="simulator-description">{{custom_excerpt}}</p>
+                        </div>
+                        <div class="simulator-actions">
+                            <a href="{{url}}" class="btn btn-primary">Utiliser le simulateur</a>
+                        </div>
+                    </article>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </section>
+</div>

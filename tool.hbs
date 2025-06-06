@@ -1,0 +1,144 @@
+{{!< default}}
+
+<article class="tool-page">
+    {{!-- En-tête de l'outil --}}
+    <header class="tool-header">
+        <div class="tool-header-container">
+            <div class="tool-main-info">
+                {{#if feature_image}}
+                <div class="tool-large-icon">
+                    <img src="{{feature_image}}" alt="{{title}}" class="tool-large-icon-img">
+                </div>
+                {{/if}}
+                <div class="tool-details">
+                    <h1 class="tool-title">{{title}}</h1>
+                    {{#if custom_excerpt}}
+                    <p class="tool-subtitle">{{custom_excerpt}}</p>
+                    {{/if}}
+                    
+                    <div class="tool-meta">
+                        <div class="tool-tabs">
+                            <button class="tab-btn active" data-tab="overview">Aperçu</button>
+                            <button class="tab-btn" data-tab="reviews">Avis ({{comment_count}})</button>
+                            <button class="tab-btn" data-tab="integrations">Intégrations</button>
+                        </div>
+                        <div class="tool-actions">
+                            <button class="btn btn-outline review-btn">
+                                Écrire un avis
+                            </button>
+                            <span class="last-updated">
+                                Dernière mise à jour: {{date updated_at format="DD MMM YYYY"}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tool-sidebar">
+                <div class="trial-badge">
+                    <span class="trial-text">Essai gratuit aujourd'hui</span>
+                </div>
+                
+                <div class="tool-platforms">
+                    <h4>Plateformes {{title}}</h4>
+                    <div class="platform-icons">
+                        {{#has tag="mac"}}<div class="platform-icon mac"></div>{{/has}}
+                        {{#has tag="windows"}}<div class="platform-icon windows"></div>{{/has}}
+                        {{#has tag="web"}}<div class="platform-icon web"></div>{{/has}}
+                        {{#has tag="ios"}}<div class="platform-icon ios"></div>{{/has}}
+                        {{#has tag="android"}}<div class="platform-icon android"></div>{{/has}}
+                    </div>
+                </div>
+                
+                <div class="tool-integrations">
+                    <h4>Intégrations {{title}}</h4>
+                    <div class="integration-icons">
+                        {{#has tag="slack"}}<div class="integration-icon slack"></div>{{/has}}
+                        {{#has tag="notion"}}<div class="integration-icon notion"></div>{{/has}}
+                        {{#has tag="google"}}<div class="integration-icon google"></div>{{/has}}
+                        {{#has tag="zapier"}}<div class="integration-icon zapier"></div>{{/has}}
+                    </div>
+                </div>
+                
+                <a href="#" class="btn btn-primary btn-large cta-button">
+                    Obtenir {{title}}
+                </a>
+                
+                <a href="#" class="btn btn-outline btn-large compare-button">
+                    Meilleurs outils de {{primary_tag.name}}
+                </a>
+                
+                <div class="vendor-note">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 16V12" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 8H12.01" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Cette page reste gratuite car {{title}} a sécurisé son statut de fournisseur vérifié.
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    {{!-- Contenu principal --}}
+    <main class="tool-content">
+        <div class="tool-content-container">
+            {{!-- Vidéo/Aperçu --}}
+            {{#if feature_image}}
+            <section class="tool-preview">
+                <div class="video-container">
+                    <img src="{{feature_image}}" alt="Aperçu de {{title}}" class="preview-image">
+                    <button class="play-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+            {{/if}}
+            
+            {{!-- Sections d'information --}}
+            <div class="tool-info-sections">
+                <section class="info-section" data-tab-content="overview">
+                    <h2>Qu'est-ce que {{title}} ?</h2>
+                    <div class="content-text">
+                        {{content}}
+                    </div>
+                    
+                    <h3>Comment fonctionne {{title}} ?</h3>
+                    <p>{{title}} offre une expérience complète de gestion qui permet aux équipes de gérer leurs projets, tâches et collaborations en un seul endroit.</p>
+                </section>
+                
+                <section class="info-section hidden" data-tab-content="reviews">
+                    <h2>Avis sur {{title}}</h2>
+                    <div class="reviews-container">
+                        {{!-- Système d'avis à implémenter --}}
+                        <p>Section des avis en cours de développement...</p>
+                    </div>
+                </section>
+                
+                <section class="info-section hidden" data-tab-content="integrations">
+                    <h2>Intégrations {{title}}</h2>
+                    <div class="integrations-grid">
+                        {{!-- Grille des intégrations --}}
+                        <p>Liste des intégrations disponibles...</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    {{!-- Outils similaires --}}
+    <section class="related-tools">
+        <div class="related-container">
+            <h2>Outils Similaires</h2>
+            <div class="related-grid">
+                {{#get "posts" filter="tag:{{primary_tag.slug}}+id:-{{id}}" limit="3"}}
+                    {{#foreach posts}}
+                        {{> tool-card}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+    </section>
+</article>

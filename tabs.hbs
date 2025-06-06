@@ -1,0 +1,83 @@
+{{!< default}}
+
+<div class="category-page">
+    <header class="category-header">
+        <div class="category-header-container">
+            <div class="category-breadcrumb">
+                <a href="{{@site.url}}">Accueil</a>
+                <span>/</span>
+                <a href="/categories">Catégories</a>
+                <span>/</span>
+                <span>{{tag.name}}</span>
+            </div>
+            
+            <h1 class="category-title">{{tag.name}}</h1>
+            {{#if tag.description}}
+            <p class="category-description">{{tag.description}}</p>
+            {{/if}}
+            
+            <div class="category-stats">
+                <span class="tools-count">{{pagination.total}} outils</span>
+                <span class="updated">Mis à jour {{date tag.updated_at format="DD MMMM YYYY"}}</span>
+            </div>
+        </div>
+    </header>
+    
+    {{!-- Filtres spécifiques à la catégorie --}}
+    <section class="category-filters">
+        <div class="filters-container">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Tous</button>
+                <button class="filter-tab" data-filter="gratuit">Gratuits</button>
+                <button class="filter-tab" data-filter="freemium">Freemium</button>
+                <button class="filter-tab" data-filter="payant">Payants</button>
+                <button class="filter-tab" data-filter="populaire">Populaires</button>
+            </div>
+            
+            <div class="sort-options">
+                <select class="sort-select" data-sort>
+                    <option value="popular">Les plus populaires</option>
+                    <option value="recent">Les plus récents</option>
+                    <option value="name">Nom A-Z</option>
+                    <option value="rating">Mieux notés</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    
+    {{!-- Grille d'outils de la catégorie --}}
+    <section class="category-tools">
+        <div class="tools-container">
+            {{#foreach posts}}
+                {{> tool-card}}
+            {{/foreach}}
+        </div>
+        
+        {{pagination}}
+    </section>
+    
+    {{!-- FAQ de la catégorie --}}
+    {{#if tag.description}}
+    <section class="category-faq">
+        <div class="faq-container">
+            <h2>Questions fréquentes sur {{tag.name}}</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Quels sont les meilleurs outils {{tag.name}} ?</h3>
+                    <p>Les meilleurs outils {{tag.name}} incluent {{#get "posts" filter="tag:{{tag.slug}}+tag:populaire" limit="3"}}{{#foreach posts}}{{title}}{{#unless @last}}, {{/unless}}{{/foreach}}{{/get}}. Chacun a ses spécificités selon vos besoins.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Existe-t-il des alternatives gratuites ?</h3>
+                    <p>Oui, nous avons recensé {{#get "posts" filter="tag:{{tag.slug}}+tag:gratuit"}}{{meta.pagination.total}}{{/get}} outils gratuits dans cette catégorie.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Comment choisir le bon outil {{tag.name}} ?</h3>
+                    <p>Le choix dépend de vos besoins spécifiques, de votre budget et de votre équipe. Consultez nos comparatifs détaillés pour chaque outil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/if}}
+</div>

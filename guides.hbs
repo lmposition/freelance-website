@@ -1,0 +1,293 @@
+{{!< default}}
+
+<div class="guides-page">
+    {{!-- En-tête de la section guides --}}
+    <header class="guides-header">
+        <div class="guides-header-container">
+            <div class="guides-breadcrumb">
+                <a href="{{@site.url}}">Accueil</a>
+                <span>/</span>
+                <span>Nos guides</span>
+            </div>
+            
+            <h1 class="guides-title">Nos guides complets</h1>
+            <p class="guides-subtitle">
+                Découvrez nos guides détaillés pour choisir les meilleurs outils et optimiser votre productivité d'entrepreneur.
+            </p>
+            
+            <div class="guides-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{#get "posts" filter="tag:guide"}}{{meta.pagination.total}}{{/get}}</span>
+                    <span class="stat-label">Guides disponibles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Années d'expertise</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Entrepreneurs aidés</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{!-- Filtres et recherche --}}
+    <section class="guides-filters">
+        <div class="filters-container">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
+                        <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
+                        <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Tous les guides
+                </button>
+                <button class="filter-tab" data-filter="populaire">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                    </svg>
+                    Les plus populaires
+                </button>
+                <button class="filter-tab" data-filter="recent">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Récents
+                </button>
+                <button class="filter-tab" data-filter="beginner">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2zM19 3h-4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Débutant
+                </button>
+                <button class="filter-tab" data-filter="advanced">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Avancé
+                </button>
+            </div>
+            
+            <div class="search-guides">
+                <input type="search" class="search-input" placeholder="Rechercher un guide..." data-guides-search>
+                <button class="search-btn" data-search-guides>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Guide mis en avant --}}
+    <section class="featured-guide">
+        <div class="featured-guide-container">
+            {{#get "posts" filter="tag:guide+tag:featured" limit="1"}}
+                {{#foreach posts}}
+                <article class="hero-guide-card">
+                    <div class="hero-guide-badge">Guide Phare</div>
+                    <div class="hero-guide-content">
+                        <div class="hero-guide-meta">
+                            <span class="guide-category">{{primary_tag.name}}</span>
+                            <span class="guide-reading-time">{{reading_time}}</span>
+                            <span class="guide-level">
+                                {{#has tag="beginner"}}Débutant{{/has}}
+                                {{#has tag="intermediate"}}Intermédiaire{{/has}}
+                                {{#has tag="advanced"}}Avancé{{/has}}
+                            </span>
+                        </div>
+                        
+                        <h2 class="hero-guide-title">{{title}}</h2>
+                        <p class="hero-guide-description">{{excerpt}}</p>
+                        
+                        <div class="hero-guide-features">
+                            {{#has tag="pdf"}}
+                            <div class="feature-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+                                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                PDF inclus
+                            </div>
+                            {{/has}}
+                            {{#has tag="templates"}}
+                            <div class="feature-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="9" y1="9" x2="15" y2="9" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="9" y1="15" x2="13" y2="15" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Templates
+                            </div>
+                            {{/has}}
+                            {{#has tag="checklist"}}
+                            <div class="feature-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Checklist
+                            </div>
+                            {{/has}}
+                        </div>
+                        
+                        <div class="hero-guide-actions">
+                            <a href="{{url}}" class="btn btn-primary btn-large">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+                                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Lire le guide complet
+                            </a>
+                            <button class="btn btn-outline btn-large" data-bookmark="{{id}}">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Sauvegarder
+                            </button>
+                        </div>
+                    </div>
+                    
+                    {{#if feature_image}}
+                    <div class="hero-guide-image">
+                        <img src="{{img_url feature_image size="l"}}" alt="{{title}}" class="hero-guide-img">
+                    </div>
+                    {{/if}}
+                </article>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </section>
+
+    {{!-- Grille des guides --}}
+    <section class="guides-grid-section">
+        <div class="guides-container">
+            <div class="section-header">
+                <h2>Tous nos guides</h2>
+                <div class="results-count">
+                    <span data-guides-count">{{#get "posts" filter="tag:guide"}}{{meta.pagination.total}}{{/get}}</span> guides disponibles
+                </div>
+            </div>
+            
+            <div class="guides-grid" data-guides-grid>
+                {{#get "posts" filter="tag:guide+tag:-featured" limit="12"}}
+                    {{#foreach posts}}
+                    <article class="guide-card" data-category="{{primary_tag.slug}}" data-level="{{#has tag="beginner"}}beginner{{/has}}{{#has tag="intermediate"}}intermediate{{/has}}{{#has tag="advanced"}}advanced{{/has}}">
+                        {{#if feature_image}}
+                        <div class="guide-image">
+                            <a href="{{url}}">
+                                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" class="guide-img">
+                            </a>
+                            <div class="guide-overlay">
+                                <div class="guide-level-badge">
+                                    {{#has tag="beginner"}}Débutant{{/has}}
+                                    {{#has tag="intermediate"}}Intermédiaire{{/has}}
+                                    {{#has tag="advanced"}}Avancé{{/has}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                        
+                        <div class="guide-content">
+                            <div class="guide-meta">
+                                <span class="guide-category">{{primary_tag.name}}</span>
+                                <span class="guide-date">{{date format="DD MMM YYYY"}}</span>
+                                <span class="guide-reading-time">{{reading_time}}</span>
+                            </div>
+                            
+                            <h3 class="guide-title">
+                                <a href="{{url}}">{{title}}</a>
+                            </h3>
+                            
+                            {{#if excerpt}}
+                            <p class="guide-excerpt">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="guide-tags">
+                                {{#has tag="pdf"}}<span class="guide-tag">PDF</span>{{/has}}
+                                {{#has tag="templates"}}<span class="guide-tag">Templates</span>{{/has}}
+                                {{#has tag="checklist"}}<span class="guide-tag">Checklist</span>{{/has}}
+                                {{#has tag="video"}}<span class="guide-tag">Vidéo</span>{{/has}}
+                            </div>
+                            
+                            <div class="guide-actions">
+                                <a href="{{url}}" class="btn btn-primary">Lire le guide</a>
+                                <button class="btn btn-icon" data-bookmark="{{id}}" title="Sauvegarder">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-icon" data-share="{{url}}" title="Partager">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M4 12V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V12" stroke="currentColor" stroke-width="2"/>
+                                        <polyline points="16,6 12,2 8,6" stroke="currentColor" stroke-width="2"/>
+                                        <line x1="12" y1="2" x2="12" y2="15" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    {{/foreach}}
+                {{/get}}
+            </div>
+            
+            {{!-- Pagination --}}
+            <div class="pagination-container">
+                <button class="btn btn-secondary load-more" data-load-more-guides>
+                    Charger plus de guides
+                </button>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Newsletter pour guides --}}
+    <section class="guides-newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2>Recevez nos nouveaux guides</h2>
+                <p>Soyez informé en premier de la publication de nos nouveaux guides complets.</p>
+                <form class="newsletter-form" data-newsletter-form>
+                    <input type="email" class="newsletter-input" placeholder="Votre adresse email" required>
+                    <button type="submit" class="btn btn-accent">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
+                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        S'abonner
+                    </button>
+                </form>
+            </div>
+            <div class="newsletter-benefits">
+                <div class="benefit-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Guides exclusifs</span>
+                </div>
+                <div class="benefit-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Templates gratuits</span>
+                </div>
+                <div class="benefit-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>0% de spam</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

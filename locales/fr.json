@@ -1,0 +1,56 @@
+{
+  "theme": {
+    "name": "Royaume",
+    "description": "Thème Ghost pour plateforme d'outils entrepreneurs"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "tools": "Explorer les outils",
+    "simulators": "Nos simulateurs",
+    "case_studies": "Études de cas",
+    "guides": "Nos guides",
+    "become_partner": "Devenir Partenaire"
+  },
+  "search": {
+    "placeholder": "Exemple: Trouve-moi un outil de productivité pour moins de 10€/mois pour Mac...",
+    "powered_by": "Propulsé par",
+    "results": "résultats",
+    "no_results": "Aucun résultat trouvé"
+  },
+  "filters": {
+    "most_popular": "Les plus populaires",
+    "new": "Nouveautés",
+    "categories": "Catégories",
+    "platform": "Plateforme",
+    "pricing": "Tarifs",
+    "industry": "Secteur"
+  },
+  "tools": {
+    "visit": "Visiter",
+    "get": "Obtenir",
+    "try_free": "Essai gratuit aujourd'hui",
+    "platforms": "Plateformes",
+    "integrations": "Intégrations",
+    "last_updated": "Dernière mise à jour",
+    "write_review": "Écrire un avis",
+    "best_tools": "Meilleurs outils de",
+    "similar_tools": "Outils Similaires"
+  },
+  "guide": {
+    "title": "Guide Gratuit des Outils Indispensables",
+    "description": "Obtenez le PDF gratuit et le rapport sur comment choisir les meilleurs outils pour 2025 et au-delà.",
+    "download": "Télécharger le Guide Gratuit"
+  },
+  "actions": {
+    "load_more": "Charger plus d'outils",
+    "loading": "Chargement...",
+    "bookmark": "Ajouter aux favoris",
+    "bookmarked": "Déjà en favoris",
+    "share": "Partager"
+  },
+  "tabs": {
+    "overview": "Aperçu",
+    "reviews": "Avis",
+    "integrations": "Intégrations"
+  }
+}
